@@ -1,18 +1,21 @@
 {
   "name": "تطبيق تعلم اليابانية",
-  "short_name": "تعلم ياباني",
+  "short_name": "اليابانية",
+  "description": "تعلم 100 جملة يابانية مع الترجمة والنطق",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1e88e5",
+  "lang": "ar",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
