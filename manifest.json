@@ -1,13 +1,11 @@
 {
-  "name": "تطبيق تعلم اليابانية",
+  "name": "تعلم اليابانية",
   "short_name": "اليابانية",
-  "description": "تعلم 100 جملة يابانية مع الترجمة والنطق",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1e88e5",
-  "lang": "ar",
-  "orientation": "portrait",
+  "background_color": "#fdfcfb",
+  "theme_color": "#8e2de2",
+  "description": "تعلم الجمل اليابانية الأساسية مع النطق والترجمة.",
   "icons": [
     {
       "src": "icon-192.png",

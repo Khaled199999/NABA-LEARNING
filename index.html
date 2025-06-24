@@ -5,41 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>تطبيق تعلم اليابانية</title>
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1e88e5" />
+  <meta name="theme-color" content="#8e2de2" />
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
-      color: #333;
+      font-family: 'Noto Sans JP', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #fdfcfb, #e2d1c3);
+      color: #2e2e2e;
       text-align: center;
       padding: 2rem;
     }
     h1 {
-      color: #1e88e5;
+      font-family: 'Sawarabi Mincho', serif;
+      color: #8e2de2;
+      font-size: 2rem;
+      border-bottom: 3px double #c49b66;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
     }
     #phrase {
       margin-top: 20px;
       font-size: 1.5rem;
       font-weight: bold;
       min-height: 100px;
+      background: #fff8f0;
+      border: 2px dashed #d4af7f;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     #counter {
       margin: 10px;
       font-size: 1.1rem;
-      color: #555;
+      color: #7b4b20;
     }
     button {
-      background: #1e88e5;
+      background: #c49b66;
       border: none;
       color: white;
       padding: 12px 24px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       border-radius: 8px;
       transition: background 0.3s ease;
     }
     button:hover {
-      background: #1565c0;
+      background: #a87e4f;
     }
     .button-group {
       margin-top: 30px;
@@ -49,9 +59,10 @@
       flex-wrap: wrap;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>مرحباً بك في تطبيق تعلم اليابانية</h1>
+  <h1>تطبيق تعلم اللغة اليابانية 日本語学習</h1>
 
   <div id="counter">الجملة 0 من 100</div>
   <div id="phrase">اضغط على زر "التالي" للبدء!</div>
@@ -62,67 +73,6 @@
     <button id="nextBtn">⏭ التالي</button>
   </div>
 
-  <script>
-    const phrases = [
-      {jp:"こんにちは",rom:"Konnichiwa",ar:"مرحباً"},
-      {jp:"ありがとう",rom:"Arigatō",ar:"شكراً"},
-      {jp:"さようなら",rom:"Sayōnara",ar:"وداعاً"},
-      {jp:"おはようございます",rom:"Ohayō gozaimasu",ar:"صباح الخير"},
-      {jp:"こんばんは",rom:"Konbanwa",ar:"مساء الخير"},
-      {jp:"すみません",rom:"Sumimasen",ar:"عفواً / المعذرة"},
-      {jp:"はい",rom:"Hai",ar:"نعم"},
-      {jp:"いいえ",rom:"Iie",ar:"لا"},
-      {jp:"お願いします",rom:"Onegaishimasu",ar:"من فضلك"},
-      {jp:"わかりました",rom:"Wakarimashita",ar:"فهمت"},
-      {jp:"助けてください",rom:"Tasukete kudasai",ar:"ساعدني من فضلك"},
-      {jp:"名前は何ですか؟",rom:"Namae wa nan desu ka?",ar:"ما اسمك؟"},
-      {jp:"元気ですか？",rom:"Genki desu ka?",ar:"كيف حالك؟"},
-      {jp:"私は元気です",rom:"Watashi wa genki desu",ar:"أنا بخير"},
-      {jp:"これは何ですか？",rom:"Kore wa nan desu ka?",ar:"ما هذا؟"},
-      {jp:"お元気で",rom:"Ogenki de",ar:"مع السلامة"},
-      {jp:"また会いましょう",rom:"Mata aimashō",ar:"إلى اللقاء"},
-      {jp:"お誕生日おめでとう",rom:"Otanjōbi omedetō",ar:"عيد ميلاد سعيد"},
-      {jp:"いただきます",rom:"Itadakimasu",ar:"دعاء قبل الأكل"},
-      {jp:"ごちそうさまでした",rom:"Gochisōsama deshita",ar:"شكراً على الطعام"},
-      // ← يمكنك هنا متابعة إدخال باقي الجمل حتى 100 بنفس التنسيق
-      {jp:"雪が降っています",rom:"Yuki ga futteimasu",ar:"إنها تثلج"}
-    ];
-
-    let index = -1;
-    const phraseDiv = document.getElementById('phrase');
-    const counterDiv = document.getElementById('counter');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const repeatBtn = document.getElementById('repeatBtn');
-
-    function speak(text) {
-      if (!('speechSynthesis' in window)) return;
-      speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ja-JP';
-      speechSynthesis.speak(utterance);
-    }
-
-    function showPhrase(i) {
-      const { jp, rom, ar } = phrases[i];
-      phraseDiv.innerHTML = `<div><span style="font-size:2rem;">${jp}</span><br/><em>${rom}</em><br/><strong>${ar}</strong></div>`;
-      counterDiv.textContent = `الجملة ${i + 1} من ${phrases.length}`;
-      speak(jp);
-    }
-
-    nextBtn.addEventListener('click', () => {
-      index = (index + 1) % phrases.length;
-      showPhrase(index);
-    });
-
-    prevBtn.addEventListener('click', () => {
-      index = (index - 1 + phrases.length) % phrases.length;
-      showPhrase(index);
-    });
-
-    repeatBtn.addEventListener('click', () => {
-      if (index >= 0) showPhrase(index);
-    });
-  </script>
+  <script src="phrases.js"></script>
 </body>
 </html>
